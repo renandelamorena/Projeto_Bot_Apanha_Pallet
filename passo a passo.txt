@@ -1,0 +1,68 @@
+Requisitos:
+Sistema aberto na atividade de apanha palllet (Sem aceitar a atividade).
+Sistema aberto na impressão de etiquetas de endereço.
+
+Obs: certificar que o navegador não está salvando as senhas. Pois nos campos do tipo senhas,
+ao confirmar a entrada no campo, o navegador tenta salvar a senha, e isso atrapanha a automação.
+
+impressora = imput = Impressora para mandar etiquetas e imprimir endereço + lógica para selecionar
+
+1 Ir ao navegador
+
+-> Repetir...
+
+2 Aceitar atividade
+    selecionar 'Aceitar' (Tempo limite para aceitar)
+
+3 Imprimir etiquetas da atividade
+    Click em 'Selecione aqui'
+    Click em (Impressora selecionada acima)
+    Click em 'Confimar'
+
+4 Guardar e informação da Endereço, tratar e guardar em variavel
+    Click triplo em 'End. Origem:'
+    Copiar a informação 'End. Origem: 017-003-04-02'
+    tratar a informação da UMA 'End. Origem: 017-003-04-02\r\n' para '010170030402' e guardar em uma variavel
+
+5 Guardar e informação da UMA, tratar e guardar em variavel
+    Click triplo em 'UMA:'
+    Copiar a informação 'UMA: 000000000000168250'
+    tratar a informação do endereço 'UMA: 000000000000168250\r\n' para '000000000000168250' e guardar em uma variavel
+
+6 Guardar e informação da Cód, tratar e guardar em variavel
+    Click triplo em 'Cód.:'
+    Copiar a informação 'Cód.: 020000062345'
+    tratar a informação do endereço 'Cód.: 020000062345\r\n' para '62345' e guardar em uma variavel
+
+7 Confimar informações da atividade
+    Click no campo de 'End. Origem'
+    Colar informação tratada do endereço
+
+    Click no campo de 'UMA'
+    Colar informação tratada da UMA
+
+    Click campo de 'Produto'
+    Colar informação tratada de Produto
+
+    Click no botão 'Confirmar'
+    Click em confirmar denovo 'CONFIRMAR'
+
+### 8 Até ajustar pra confirmar todas as de uma vez:
+
+    Enquanto o botão de Confimar estiver presente na tela
+
+    Click no botão 'Confirmar'
+    Click em 'CONFIRMAR' para continuar a confirmação
+
+    se não:
+
+9 Ir para impressão de etiquetas
+
+10 Imprimir etiquetas
+    Click Duplo no campo 'Enderço'
+    Colar informação de endereço tratada
+    Click em 'Imprimir'
+    (Suponho que a impressora desejada ja tenha sido usada)
+    Click em 'Imprimir'
+
+<- Repetir...

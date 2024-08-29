@@ -2,8 +2,13 @@ import pyautogui as pag
 import pyperclip as pcl
 import time
 
+import pandas as pd
+
 from func import verifica_tela
 from func.geral import caminho_absoluto as caminho, pause
+
+df_cod_barras = pd.read_excel('Codigo_de_Barras.xlsx', engine='openpyxl')
+df_cod_barras = df_cod_barras.astype(str)
 
 pause(0.3)
 
@@ -91,6 +96,8 @@ if confirmacao_iniciamento_automacao == 'OK':
             cod_copiado = pcl.paste()
             cod = cod_copiado.replace('Cód.: ', '').replace('\r', '').replace('\n', '')
             cod_tratado = cod[2:].lstrip('0')
+            
+            cod_barras = df_cod_barras[df_cod_barras['Cód.Produto'] == cod_tratado]['Cód.Barras Cx.'].values[0]
 
             # 7 Confimar informações da atividade
                 # Click no campo de 'End. Origem'
@@ -114,7 +121,7 @@ if confirmacao_iniciamento_automacao == 'OK':
                 click_imagem('img/atividade_20/campo_produto.png', 'campo_produto - onde fica o local para colocar COD na atividade')
 
                     # Colar informação tratada de Produto
-                pcl.copy(cod_tratado)
+                pcl.copy(cod_barras)
                 pag.hotkey('ctrl', 'v')
 
                     # Click no botão 'Confirmar'
